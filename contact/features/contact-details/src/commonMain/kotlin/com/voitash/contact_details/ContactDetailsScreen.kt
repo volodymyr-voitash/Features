@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AccountCircle
 import androidx.compose.material.icons.rounded.Close
@@ -57,6 +59,7 @@ fun ContactDetails(
 ) {
     Column(
         modifier = Modifier.padding(16.dp)
+            .verticalScroll(rememberScrollState())
     ) {
         val openDialog = rememberSaveable { mutableStateOf(false)  }
 
