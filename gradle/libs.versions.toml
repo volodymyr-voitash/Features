@@ -28,6 +28,7 @@ kermit = "2.0.3"
 #precompose = "1.6.0"
 precompose = "1.5.11"
 jetbrainsKotlinJvm = "1.9.0"
+compottie = "1.1.2"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -67,6 +68,7 @@ precompose = { module = "moe.tlaster:precompose", version.ref = "precompose" }
 precompose-molecule = { module = "moe.tlaster:precompose-molecule", version.ref = "precompose" }
 precompose-viewmodel = { module = "moe.tlaster:precompose-viewmodel", version.ref = "precompose" }
 precompose-koin = { module = "moe.tlaster:precompose-koin", version.ref = "precompose" }
+compottie = { module = "io.github.alexzhirkevich:compottie", version.ref = "compottie" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

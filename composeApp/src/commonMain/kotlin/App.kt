@@ -3,9 +3,12 @@ import androidx.compose.runtime.Composable
 import com.voitash.contact_details.navigation.contactDetails
 import com.voitash.contact_details.navigation.navigateToContactDetails
 import com.voitash.contact_list.navigation.contactListScreen
+import com.voitash.splash.navigation.splashRoute
+import com.voitash.splash.navigation.splashScreen
 import com.voitash.contact_list.navigation.navigateToContactList
 import com.voitash.menu.navigation.menu
 import com.voitash.menu.navigation.menuRoute
+import com.voitash.menu.navigation.navigateMenu
 import di.KoinDI
 import moe.tlaster.precompose.PreComposeApp
 import moe.tlaster.precompose.navigation.NavHost
@@ -23,8 +26,11 @@ fun App() {
             NavHost(
                 navigator = navigator,
                 navTransition = NavTransition(),
-                initialRoute = menuRoute
+                initialRoute = splashRoute
             ) {
+                splashScreen {
+                    navigator.navigateMenu()
+                }
                 menu(
                     onContactSelected = {
                         navigator.navigateToContactList()
