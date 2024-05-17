@@ -1,7 +1,8 @@
 package com.voitash.contact_details
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -12,6 +13,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.AccountCircle
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.Edit
@@ -44,7 +46,8 @@ fun ContactDetailsScreen(viewModel: ContactDetailsViewModel, onNavigateBack: () 
         onEmailChanged = { viewModel.updateEmail(it)},
         onLastNameChanged = { viewModel.updateLastname(it) },
         onSave = { viewModel.updateContact(onNavigateBack) },
-        onToggleEditingMode = { viewModel.toggleEditingMode() }
+        onToggleEditingMode = { viewModel.toggleEditingMode() },
+        onNavigateBack = onNavigateBack
     )
 }
 @Composable
@@ -55,15 +58,18 @@ fun ContactDetails(
     onLastNameChanged: (String) -> Unit,
     onDelete: (Int) -> Unit,
     onSave: () -> Unit,
-    onToggleEditingMode: () -> Unit
+    onToggleEditingMode: () -> Unit,
+    onNavigateBack: () -> Unit
 ) {
     Column(
         modifier = Modifier.padding(16.dp)
             .verticalScroll(rememberScrollState())
     ) {
         val openDialog = rememberSaveable { mutableStateOf(false)  }
-
-        UserImage(url = state.photo)
+        Box(modifier = Modifier.fillMaxWidth()) {
+            BackBtn(onNavigateBack)
+            UserImage(url = state.photo)
+        }
         Spacer(modifier = Modifier.size(16.dp))
         TextField(
             modifier = Modifier
@@ -143,7 +149,7 @@ fun ContactDetails(
 }
 
 @Composable
-fun ColumnScope.UserImage(url: String?) {
+fun BoxScope.UserImage(url: String?) {
     val placeholder = rememberVectorPainter(image = Icons.Rounded.AccountCircle)
     AsyncImage(
         model = url,
@@ -151,11 +157,18 @@ fun ColumnScope.UserImage(url: String?) {
         placeholder = placeholder,
         contentScale = ContentScale.Crop,
         modifier = Modifier
-            .align(Alignment.CenterHorizontally)
+            .align(Alignment.Center)
             .size(128.dp)
             .aspectRatio(1f / 1f)
             .clip(CircleShape)
     )
+}
+
+@Composable
+fun BoxScope.BackBtn(onBackBtnClicked: () -> Unit) {
+    IconButton(onClick = onBackBtnClicked, modifier = Modifier.align(Alignment.TopStart)) {
+        Icon(imageVector = Icons.AutoMirrored.Rounded.ArrowBack, contentDescription = null)
+    }
 }
 
 @Composable
