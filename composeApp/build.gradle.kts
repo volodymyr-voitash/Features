@@ -46,6 +46,7 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(project(":shared"))
+            implementation(project(":menu"))
             implementation(project(":contact:features:contact-list"))
             implementation(project(":contact:features:contact-details"))
             implementation(project(":contact:contact-domain"))

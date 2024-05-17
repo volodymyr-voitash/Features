@@ -2,15 +2,16 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import com.voitash.contact_details.navigation.contactDetails
 import com.voitash.contact_details.navigation.navigateToContactDetails
-import com.voitash.contact_list.navigation.contactListRoute
 import com.voitash.contact_list.navigation.contactListScreen
+import com.voitash.contact_list.navigation.navigateToContactList
+import com.voitash.menu.navigation.menu
+import com.voitash.menu.navigation.menuRoute
 import di.KoinDI
 import moe.tlaster.precompose.PreComposeApp
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.rememberNavigator
 import moe.tlaster.precompose.navigation.transition.NavTransition
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.koin.core.context.KoinContext
 
 @Composable
 @Preview
@@ -22,8 +23,13 @@ fun App() {
             NavHost(
                 navigator = navigator,
                 navTransition = NavTransition(),
-                initialRoute = contactListRoute
+                initialRoute = menuRoute
             ) {
+                menu(
+                    onContactSelected = {
+                        navigator.navigateToContactList()
+                    }
+                )
                 contactListScreen { contactId ->
                     navigator.navigateToContactDetails(contactId)
                 }

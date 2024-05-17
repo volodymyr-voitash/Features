@@ -38,6 +38,7 @@ dependencyResolutionManagement {
 
 include(":composeApp")
 include(":shared")
+include(":menu")
 include(":contact:features:contact-list")
 include(":contact:features:contact-details")
 include(":contact:contact-domain")

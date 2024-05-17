@@ -1,7 +1,7 @@
 package com.voitash.contact_list.navigation
 
 import com.voitash.contact_list.ContactListScreen
-import com.voitash.contact_list.ContactListViewModel
+import moe.tlaster.precompose.navigation.Navigator
 import moe.tlaster.precompose.navigation.RouteBuilder
 import moe.tlaster.precompose.navigation.transition.NavTransition
 import org.koin.compose.koinInject
@@ -17,4 +17,8 @@ fun RouteBuilder.contactListScreen(
             onNavigateToContactDetails = onNavigateToContactDetails
         )
     }
+}
+
+fun Navigator.navigateToContactList() {
+    this.navigate(contactListRoute)
 }
