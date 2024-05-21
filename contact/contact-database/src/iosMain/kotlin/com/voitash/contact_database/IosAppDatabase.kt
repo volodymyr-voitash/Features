@@ -13,10 +13,5 @@ fun getDatabaseBuilder(): RoomDatabase.Builder<AppDatabase> {
     return Room.databaseBuilder<AppDatabase>(
         name = dbFilePath,
         factory =  { AppDatabase::class.instantiateImpl() }
-    ).setDriver(BundledSQLiteDriver())
-        .setQueryCoroutineContext(Dispatchers.IO)
-}
-
-fun getDatabase(): AppDatabase {
-    return getDatabaseBuilder().build()
+    )
 }

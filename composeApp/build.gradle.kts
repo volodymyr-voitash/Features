@@ -1,3 +1,4 @@
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_9
 
 plugins {
@@ -19,6 +20,8 @@ kotlin {
         }
     }
 
+    jvm("desktop")
+
     compilerOptions {
         languageVersion.set(KOTLIN_1_9)
     }
@@ -39,6 +42,8 @@ kotlin {
     }
 
     sourceSets {
+        val desktopMain by getting
+
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
@@ -70,6 +75,9 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.room.runtime)
             api(libs.precompose)
+        }
+        desktopMain.dependencies {
+            implementation(compose.desktop.currentOs)
         }
     }
 }
@@ -108,4 +116,20 @@ android {
         implementation(libs.koin.android)
         debugImplementation(libs.compose.ui.tooling)
     }
+}
+
+compose.desktop {
+    application {
+        mainClass = "com.voitash.features.MainKt"
+
+        nativeDistributions {
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            packageName = "com.voitash.features"
+            packageVersion = "1.0.0"
+        }
+    }
+}
+
+compose.experimental {
+    web.application {}
 }

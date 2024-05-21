@@ -15,7 +15,3 @@ fun getDatabaseBuilder(ctx: Context): RoomDatabase.Builder<AppDatabase> {
     ).setDriver(BundledSQLiteDriver())
         .setQueryCoroutineContext(Dispatchers.IO)
 }
-
-fun getDatabase(ctx: Context): AppDatabase {
-    return getDatabaseBuilder(ctx).build()
-}

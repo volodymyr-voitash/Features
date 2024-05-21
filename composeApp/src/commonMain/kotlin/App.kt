@@ -7,7 +7,6 @@ import com.voitash.splash.navigation.splashRoute
 import com.voitash.splash.navigation.splashScreen
 import com.voitash.contact_list.navigation.navigateToContactList
 import com.voitash.menu.navigation.menu
-import com.voitash.menu.navigation.menuRoute
 import com.voitash.menu.navigation.navigateMenu
 import di.KoinDI
 import moe.tlaster.precompose.PreComposeApp
