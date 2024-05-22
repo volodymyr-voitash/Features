@@ -9,6 +9,6 @@ class ContactsRemoteRepositoryImpl(
     private val api: ContactApi
 ): ContactsRemoteRepository {
     override suspend fun fetchContacts(number: Int): List<ContactWithoutId> {
-        return api.getUsers(number).getOrNull()?.results?.map { it.toContact() } ?: emptyList()
+        return api.getUsers(number).getOrThrow().results?.map { it.toContact() } ?: emptyList()
     }
 }
