@@ -1,0 +1,4 @@
+<resources>
+    <string name="unknown_error">Невідома помилка</string>
+    <string name="cannot_load_contacts">Не вдалося завантажити контакти. Причина: %1$s</string>
+</resources>

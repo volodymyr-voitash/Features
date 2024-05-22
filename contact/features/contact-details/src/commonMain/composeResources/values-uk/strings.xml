@@ -1,0 +1,8 @@
+<resources>
+    <string name="confirm">Підтвердити</string>
+    <string name="dismiss">Закрити</string>
+    <string name="save">Зберегти</string>
+    <string name="delete">Видалити</string>
+    <string name="dialog_title_delete_contact">Видалити контакт</string>
+    <string name="dialog_text_delete_contact">Ви впевнені?</string>
+</resources>
