@@ -54,3 +54,9 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
+
+compose.resources {
+    publicResClass = false
+    packageOfResClass = "com.voitash.splash.resources"
+    generateResClass = always
+}
