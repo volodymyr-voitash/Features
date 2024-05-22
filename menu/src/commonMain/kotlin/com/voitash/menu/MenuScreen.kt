@@ -17,6 +17,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.voitash.menu.resources.Res
+import com.voitash.menu.resources.menu_item_random_contacts
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun MenuScreen(onContactSelected: () -> Unit) {
@@ -27,7 +30,7 @@ fun MenuScreen(onContactSelected: () -> Unit) {
 
 @Composable
 fun ContactFeature(onContactSelected: () -> Unit) {
-    MenuItem("Random Contacts", Icons.Filled.AccountBox, onContactSelected)
+    MenuItem(stringResource(Res.string.menu_item_random_contacts), Icons.Filled.AccountBox, onContactSelected)
 }
 
 @Composable

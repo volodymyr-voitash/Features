@@ -34,6 +34,7 @@ kotlin {
             implementation(compose.animation)
             implementation(compose.material)
             implementation(compose.material3)
+            implementation(compose.components.resources)
             implementation(compose.ui)
             implementation(libs.precompose)
         }
@@ -53,4 +54,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+}
+
+compose.resources {
+    publicResClass = false
+    packageOfResClass = "com.voitash.menu.resources"
+    generateResClass = always
 }

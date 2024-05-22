@@ -131,6 +131,8 @@ compose.desktop {
     }
 }
 
-compose.experimental {
-    web.application {}
+compose.resources {
+    publicResClass = true
+    packageOfResClass = "me.sample.library.resources"
+    generateResClass = always
 }

@@ -35,6 +35,15 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import com.voitash.contact_details.resources.Res
+import com.voitash.contact_details.resources.confirm
+import com.voitash.contact_details.resources.delete
+import com.voitash.contact_details.resources.dialog_text_delete_contact
+import com.voitash.contact_details.resources.dialog_title_delete_contact
+import com.voitash.contact_details.resources.dismiss
+import com.voitash.contact_details.resources.save
+import org.jetbrains.compose.resources.getString
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun ContactDetailsScreen(viewModel: ContactDetailsViewModel, onNavigateBack: () -> Unit) {
@@ -112,14 +121,14 @@ fun ContactDetails(
                 enabled = state.isSaveEnabled,
                 onClick = { onSave() },
             ) {
-                Text(text = "Save")
+                Text(text = stringResource(Res.string.save))
             }
             Spacer(modifier = Modifier.size(16.dp))
             Button(
                 modifier = Modifier.weight(1f),
                 onClick = { openDialog.value = true },
             ) {
-                Text(text = "Delete")
+                Text(text = stringResource(Res.string.delete))
             }
             Spacer(modifier = Modifier.size(16.dp))
             IconButton(
@@ -136,8 +145,8 @@ fun ContactDetails(
 
         if (openDialog.value) {
             ConfirmDialog(
-                title = "Delete contact",
-                text = "Are you sure?",
+                title = stringResource(Res.string.dialog_title_delete_contact),
+                text = stringResource(Res.string.dialog_text_delete_contact),
                 onConfirm = {
                     openDialog.value = false
                     onDelete(state.id)
@@ -183,10 +192,10 @@ fun ConfirmDialog(
         title = { Text(title) },
         text = { Text(text) },
         confirmButton = {
-            Button(onClick = { onConfirm() }) { Text("Confirm") }
+            Button(onClick = { onConfirm() }) { Text(stringResource(Res.string.confirm)) }
         },
         dismissButton = {
-            Button(onClick = { onDismiss() }) { Text("Dismiss") }
+            Button(onClick = { onDismiss() }) { Text(stringResource(Res.string.dismiss)) }
         }
     )
 }

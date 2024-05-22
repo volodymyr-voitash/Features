@@ -1,0 +1,4 @@
+<resources>
+    <string name="unknown_error">Unknown error</string>
+    <string name="cannot_load_contacts">Cannot load contacts. Reason: %1$s</string>
+</resources>

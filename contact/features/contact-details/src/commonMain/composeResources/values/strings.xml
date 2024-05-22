@@ -1,0 +1,8 @@
+<resources>
+    <string name="confirm">Confirm</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="dialog_title_delete_contact">Delete contact</string>
+    <string name="dialog_text_delete_contact">Are you sure?</string>
+</resources>

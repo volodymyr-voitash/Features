@@ -51,14 +51,17 @@ import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.voitash.contact_domain.model.Contact
 import com.voitash.contact_domain.state.Resource
+import com.voitash.contact_list.resources.Res
+import com.voitash.contact_list.resources.cannot_load_contacts
+import com.voitash.contact_list.resources.unknown_error
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
-import moe.tlaster.precompose.lifecycle.Lifecycle
 import moe.tlaster.precompose.lifecycle.LifecycleOwner
 import moe.tlaster.precompose.lifecycle.LocalLifecycleOwner
 import moe.tlaster.precompose.lifecycle.repeatOnLifecycle
+import org.jetbrains.compose.resources.getString
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
@@ -84,10 +87,18 @@ fun ContactListScreen(onNavigateToContactDetails: (Int) -> Unit, viewModel: Cont
         CollectSideEffect(viewModel.sideEffect) {
             when(it) {
                 is SideEffect.ShowCannotLoadContacts -> {
-                    snackbarHostState.showSnackbar("Cannot load contacts. Reason: ${it.t.message ?: "Unknown error"}")
+                    snackbarHostState.showSnackbar(
+                        getString(Res.string.cannot_load_contacts,
+                        it.t.message ?: getString(Res.string.unknown_error)
+                        )
+                    )
                 }
                 is SideEffect.ShowCannotRefreshContacts -> {
-                    snackbarHostState.showSnackbar("Cannot reset contacts. Reason: ${it.t.message ?: "Unknown error"}")
+                    snackbarHostState.showSnackbar(
+                        getString(Res.string.cannot_load_contacts, it.t.message
+                            ?: getString(Res.string.unknown_error)
+                        )
+                    )
                 }
             }
         }
