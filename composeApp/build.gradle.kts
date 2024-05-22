@@ -1,8 +1,9 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_9
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_0
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
 }
@@ -23,7 +24,7 @@ kotlin {
     jvm("desktop")
 
     compilerOptions {
-        languageVersion.set(KOTLIN_1_9)
+        languageVersion.set(KOTLIN_2_0)
     }
 
     listOf(
