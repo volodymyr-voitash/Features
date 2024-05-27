@@ -1,5 +1,6 @@
 package com.voitash.contact_list
 
+import CollectSideEffect
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -35,7 +36,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -54,16 +54,7 @@ import com.voitash.contact_domain.state.Resource
 import com.voitash.contact_list.resources.Res
 import com.voitash.contact_list.resources.cannot_load_contacts
 import com.voitash.contact_list.resources.unknown_error
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.withContext
-import moe.tlaster.precompose.lifecycle.LifecycleOwner
-import moe.tlaster.precompose.lifecycle.LocalLifecycleOwner
-import moe.tlaster.precompose.lifecycle.repeatOnLifecycle
 import org.jetbrains.compose.resources.getString
-import kotlin.coroutines.CoroutineContext
-import kotlin.coroutines.EmptyCoroutineContext
 
 @Composable
 fun ContactListScreen(onNavigateToContactDetails: (Int) -> Unit, viewModel: ContactListViewModel) {
@@ -213,25 +204,5 @@ fun Error(throwable: Throwable) {
 fun RefreshBtn(onClick: () -> Unit) {
     FloatingActionButton(onClick = { onClick() },) {
         Icon(Icons.Filled.Refresh, "Floating action button.")
-    }
-}
-
-@Composable
-fun <SideEffect> CollectSideEffect(
-    sideEffect: Flow<SideEffect>,
-    lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
-    context: CoroutineContext = Dispatchers.Main.immediate,
-    onSideEffect: suspend CoroutineScope.(effect: SideEffect) -> Unit,
-) {
-    LaunchedEffect(sideEffect, lifecycleOwner) {
-        lifecycleOwner.lifecycle.repeatOnLifecycle {
-            if (context == EmptyCoroutineContext) {
-                sideEffect.collect { onSideEffect(it) }
-            } else {
-                withContext(context) {
-                    sideEffect.collect { onSideEffect(it) }
-                }
-            }
-        }
     }
 }

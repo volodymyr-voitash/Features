@@ -8,7 +8,6 @@ import com.voitash.contact_domain.usecase.CheckEmptyDBUseCase
 import com.voitash.contact_domain.usecase.ContactListUseCase
 import com.voitash.contact_domain.usecase.DeleteContactUseCase
 import com.voitash.contact_domain.usecase.ResetContactsUseCase
-
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted

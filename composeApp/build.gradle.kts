@@ -41,6 +41,7 @@ kotlin {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.koin.android)
+            implementation(libs.kotlinx.coroutines.android)
         }
         commonMain.dependencies {
             implementation(project(":shared"))
@@ -64,13 +65,13 @@ kotlin {
             implementation(libs.coil.compose)
             implementation(libs.coil.network.ktor)
             implementation(libs.koin.core)
-            implementation(libs.koin.compose)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.room.runtime)
-            api(libs.precompose)
+            implementation(libs.compose.navigation)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
+            implementation(libs.kotlinx.coroutines.swing)
         }
     }
 }
@@ -105,8 +106,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     dependencies {
-        implementation(libs.kotlinx.coroutines.android)
-        implementation(libs.koin.android)
         debugImplementation(libs.compose.ui.tooling)
     }
 }

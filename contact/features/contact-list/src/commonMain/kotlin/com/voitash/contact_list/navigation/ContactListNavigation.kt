@@ -1,24 +1,26 @@
 package com.voitash.contact_list.navigation
 
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
 import com.voitash.contact_list.ContactListScreen
-import moe.tlaster.precompose.navigation.Navigator
-import moe.tlaster.precompose.navigation.RouteBuilder
-import moe.tlaster.precompose.navigation.transition.NavTransition
-import org.koin.compose.koinInject
+import com.voitash.contact_list.ContactListViewModel
+import org.koin.mp.KoinPlatform.getKoin
 
 const val contactListRoute = "/contactList"
 
-fun RouteBuilder.contactListScreen(
+fun NavGraphBuilder.contactListScreen(
     onNavigateToContactDetails: (Int) -> Unit,
 ) {
-    scene(route = contactListRoute, navTransition = NavTransition()) {
+    composable(route = contactListRoute) {
         ContactListScreen(
-            viewModel = koinInject(),
+            viewModel = viewModel { getKoin().get<ContactListViewModel>() },
             onNavigateToContactDetails = onNavigateToContactDetails
         )
     }
 }
 
-fun Navigator.navigateToContactList() {
+fun NavController.navigateToContactList() {
     this.navigate(contactListRoute)
 }

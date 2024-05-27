@@ -36,9 +36,8 @@ kotlin {
             implementation(libs.coil.compose)
             implementation(libs.coil.network.ktor)
             implementation(libs.androidx.lifecycle.viewmodel)
-            api(libs.precompose)
+            implementation(libs.compose.navigation)
             implementation(libs.koin.core)
-            implementation(libs.koin.compose)
             implementation(libs.kermit)
         }
         commonTest.dependencies {

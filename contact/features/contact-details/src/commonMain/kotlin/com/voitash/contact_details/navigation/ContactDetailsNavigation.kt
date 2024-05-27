@@ -1,31 +1,35 @@
 package com.voitash.contact_details.navigation
 
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavType
+import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.voitash.contact_details.ContactDetailsScreen
 import com.voitash.contact_details.ContactDetailsViewModel
-import moe.tlaster.precompose.navigation.Navigator
-import moe.tlaster.precompose.navigation.RouteBuilder
-import moe.tlaster.precompose.navigation.path
-import moe.tlaster.precompose.navigation.transition.NavTransition
-import org.koin.compose.getKoin
 import org.koin.core.parameter.parametersOf
+import org.koin.mp.KoinPlatform.getKoin
 
 private const val contactIdArg = "contactId"
 private const val contactDetailsRoute = "/contact/{$contactIdArg}"
 
-fun RouteBuilder.contactDetails(
-    onNavigateBack: () -> Unit
-) {
-    scene(route = contactDetailsRoute, navTransition = NavTransition()) { backStackEntry ->
-        val id: Int = backStackEntry.path<Int>(contactIdArg)
-            ?: throw IllegalArgumentException("Contact id can't be null")
+fun NavGraphBuilder.contactDetails(onNavigateBack: () -> Unit) {
+    composable(
+        route = contactDetailsRoute,
+        arguments = listOf(navArgument(contactIdArg) { type = NavType.IntType })
+    ) {
         ContactDetailsScreen(
-            viewModel = getKoin().get<ContactDetailsViewModel>(parameters = { parametersOf(id) }),
+            viewModel = viewModel {
+                getKoin().get<ContactDetailsViewModel>(
+                    parameters = { parametersOf(it.arguments?.getInt(contactIdArg)) }
+                )
+            },
             onNavigateBack = onNavigateBack
         )
     }
 }
 
-fun Navigator.navigateToContactDetails(contactId: Int) {
+fun NavController.navigateToContactDetails(contactId: Int) {
     this.navigate("/contact/$contactId")
 }
-

@@ -2,7 +2,6 @@ package com.voitash.contact_details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import co.touchlab.kermit.Logger
 import com.voitash.contact_domain.model.Contact
 import com.voitash.contact_domain.usecase.DeleteContactUseCase
 import com.voitash.contact_domain.usecase.GetContactByIdUseCase
@@ -34,15 +33,6 @@ class ContactDetailsViewModel(
                 )
             )
         }
-    }
-
-    init {
-        Logger.d("ViewModel") { "init $this"}
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        Logger.d("ViewModel") { "onCleared $this"}
     }
 
     fun toggleEditingMode() {

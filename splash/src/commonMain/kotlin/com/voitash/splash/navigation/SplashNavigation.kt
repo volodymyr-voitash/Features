@@ -1,15 +1,15 @@
 package com.voitash.splash.navigation
 
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
 import com.voitash.splash.SplashScreen
-import moe.tlaster.precompose.navigation.RouteBuilder
-import moe.tlaster.precompose.navigation.transition.NavTransition
 
 const val splashRoute = "/splash"
 
-fun RouteBuilder.splashScreen(
+fun NavGraphBuilder.splashScreen(
     doAfterSplash: () -> Unit,
 ) {
-    scene(route = splashRoute, navTransition = NavTransition()) {
+    composable(route = splashRoute) {
         SplashScreen(
             doAfterSplash = doAfterSplash
         )

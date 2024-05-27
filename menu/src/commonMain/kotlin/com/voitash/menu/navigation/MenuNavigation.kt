@@ -1,29 +1,26 @@
 package com.voitash.menu.navigation
 
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavOptions
+import androidx.navigation.compose.composable
 import com.voitash.menu.MenuScreen
-import moe.tlaster.precompose.navigation.NavOptions
-import moe.tlaster.precompose.navigation.Navigator
-import moe.tlaster.precompose.navigation.PopUpTo
-import moe.tlaster.precompose.navigation.RouteBuilder
-import moe.tlaster.precompose.navigation.transition.NavTransition
 
 const val menuRoute = "/menu"
 
-fun RouteBuilder.menu(
+fun NavGraphBuilder.menu(
     onContactSelected: () -> Unit,
 ) {
-    scene(route = menuRoute, navTransition = NavTransition()) {
+    composable(route = menuRoute) {
         MenuScreen(
             onContactSelected = onContactSelected
         )
     }
 }
 
-fun Navigator.navigateMenu() {
+fun NavController.navigateMenu(navOptions: NavOptions.Builder) {
     this.navigate(
         route = menuRoute,
-        options = NavOptions(
-            popUpTo = PopUpTo.First()
-        )
+        navOptions = navOptions.build()
     )
 }
